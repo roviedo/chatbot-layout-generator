@@ -4,6 +4,12 @@ class ChatbotLayoutGenerator {
     }
 }
 
+var updateInput = function (e) {
+    console.log('e', e.target);
+}
+
+document.addEventListener('change', updateInput);
+
 
 var chatbotLayoutGeneratorProps = {
     header: {

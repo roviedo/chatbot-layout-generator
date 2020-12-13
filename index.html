@@ -5,10 +5,42 @@
 <html>
 <body>
 <div>
-    <input type="text" value="test" />
+    <label for="open-on-default-false">Open on default false</label>
+    <input type="radio" name="open-on-default" value="false" onchange="updateInput" />
+    <label for="open-on-default-true">Open on default true</label>
+    <input id="open-on-default-true" type="radio" name="open-on-default" value="true" onchange="updateInput" />
 </div>
 <div>
-    <input type="text" value="test" />
+    <label for="header-image">header image</label>
+    <input type="text" value="" onchange="updateInput" />
+</div>
+<div>
+    <label for="image background">image background</label>
+    <input type="text" value="" onchange="updateInput" />
+</div>
+<div>
+    <label for="open/close color">Open close color</label>
+    <input type="text" value="" onchange="updateInput" />
+</div>
+<div>
+    <label for="icons">Open/close icons</label>
+    <div>
+        <label for="open icon">open icon</label>
+        <input type="text" value="" onchange="updateInput" />
+    </div>
+    <div>
+        <label for="close icon">close icon</label>
+        <input type="text" value="" onchange="updateInput" />
+    </div>
+</div>
+<div>
+    <label for="cars">Open close shape</label>
+
+    <select name="shape" id="open-close-icon-shape" onchange="updateInput">
+      <option value="square">Square</option>
+      <option value="circle">Circle</option>
+      <option value="square-round-edges">Square with round edges</option>
+    </select>
 </div>
 <script>
     var chatbotLayoutGenerator = new ChatbotLayoutGenerator(chatbotLayoutGeneratorProps);
