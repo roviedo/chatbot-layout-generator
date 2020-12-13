@@ -5,7 +5,8 @@ class ChatbotLayoutGenerator {
 }
 
 var updateInput = function (e) {
-    console.log('e', e.target);
+    console.log('e value', e.target.value);
+    console.log('e dataset', e.target.dataset);
 }
 
 document.addEventListener('change', updateInput);
