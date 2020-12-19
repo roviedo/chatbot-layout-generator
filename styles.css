@@ -1,9 +1,19 @@
+.main {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+   .main {
+        width: 50%;
+    } 
+}
+
 .field {
     margin-bottom: 10px;
     position: relative;
 }
 
-.field input {
+.textfield input {
     font: inherit;
     color: currentColor;
     width: 100%;
@@ -21,7 +31,7 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.field::before {
+.textfield::before {
     left: 0;
     right: 0;
     bottom: 0;

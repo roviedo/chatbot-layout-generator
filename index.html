@@ -5,47 +5,56 @@
 </head>
 <html>
 <body>
-<div class="field">
-    <label for="open-on-default-false">Open on default false</label>
-    <input type="radio" name="open-on-default" data-type="open-on-default" value="false" onchange="updateInput" />
-    <label for="open-on-default-true">Open on default true</label>
-    <input id="open-on-default-true" data-type="open-on-default" type="radio" name="open-on-default" value="true" onchange="updateInput" />
-</div>
-<div class="field">
-    <label for="header-image">header image</label>
-    <input type="text" value="" data-type="header-image" onchange="updateInput" />
-</div>
-<div class="field">
-    <label for="image background">image background</label>
-    <input type="text" value="" data-type="image-background" onchange="updateInput" />
-</div>
-<div class="field">
-    <label for="open/close color">Open close color</label>
-    <input type="text" value="" data-type="open-close-color" onchange="updateInput" />
-</div>
-<div class="field">
-    <label for="icons">Open/close icons</label>
-    <div>
-        <label for="open icon">open icon</label>
-        <input type="text" value="" data-type="open-icon" onchange="updateInput" />
-    </div>
-    <div>
-        <label for="close icon">close icon</label>
-        <input type="text" value="" data-type="close-icon" onchange="updateInput" />
-    </div>
-</div>
-<div class="field">
-    <label for="cars">Open close shape</label>
+    <div class="main">
+        <h1>Chatbot layout setup</h1>
+        <div class="field">
+            <label for="open-on-default-false">Open on default false</label>
+            <input type="radio" name="open-on-default" data-type="open-on-default" value="false" onchange="updateInput" />
+            <label for="open-on-default-true">Open on default true</label>
+            <input id="open-on-default-true" data-type="open-on-default" type="radio" name="open-on-default" value="true" onchange="updateInput" />
+        </div>
+        <div class="field textfield">
+            <label for="header-image">Header image</label>
+            <input type="text" value="" data-type="header-image" onchange="updateInput" />
+        </div>
+        <div class="field textfield">
+            <label for="image background">Image background color</label>
+            <input type="text" value="" data-type="header-background-color" onchange="updateInput" />
+        </div>
+        <div class="field textfield">
+            <label for="open/close color">Open close color</label>
+            <input type="text" value="" data-type="open-close-color" onchange="updateInput" />
+        </div>
+        <div>
+            <label for="icons">Open/close icons</label>
+            <div class=" field textfield">
+                <label for="open icon">open icon</label>
+                <input type="text" value="" data-type="open-icon" onchange="updateInput" />
+            </div>
+            <div class=" field textfield">
+                <label for="close icon">close icon</label>
+                <input type="text" value="" data-type="close-icon" onchange="updateInput" />
+            </div>
+        </div>
+        <div class="field">
+            <label for="cars">Open close shape</label>
 
-    <select name="shape" id="open-close-icon-shape" data-type="open-close-icon-shape" onchange="updateInput">
-      <option value="square">Square</option>
-      <option value="circle">Circle</option>
-      <option value="square-round-edges">Square with round edges</option>
-    </select>
-</div>
-<script>
-    var chatbotLayoutGenerator = new ChatbotLayoutGenerator(chatbotLayoutGeneratorProps);
-    console.log('chatbotLayoutGenerator', chatbotLayoutGenerator);
-</script>
+            <select name="shape" id="open-close-icon-shape" data-type="open-close-icon-shape" onchange="updateInput">
+              <option value="square">Square</option>
+              <option value="circle">Circle</option>
+              <option value="square-round-edges">Square with round edges</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" value="Submit">Submit</button>
+        </div>
+        <div class="generated-layout-props">
+            <pre></pre>
+        </div>
+    </div>
+    <script>
+        var chatbotLayoutGenerator = new ChatbotLayoutGenerator(chatbotLayoutGeneratorProps);
+        console.log('chatbotLayoutGenerator', chatbotLayoutGenerator);
+    </script>
 </body>
 </html>
