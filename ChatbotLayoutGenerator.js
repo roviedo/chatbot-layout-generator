@@ -1,6 +1,5 @@
 class ChatbotLayoutGenerator {
     constructor(props) {
-        console.log(props);
         this.header = {
             image: props.header.image,
             backgroundColor: props.header.backgroundColor
@@ -42,6 +41,21 @@ class ChatbotLayoutGenerator {
     setOpenCloseIconShape (openCloseShape) {
         this.openCloseShape = openCloseShape;
     }
+
+    initCss() {
+        const style = document.createElement('style');
+        const header = '.header-logo {' + this.header.backgroundColor + '}';
+        const headerLogo = document.querySelector('.header-logo .logo').src = this.header.image;
+        if (!this.openOnDefault) {
+            document.querySelector('.chatbot-layout').classList.add('chatbot-layout-closed');
+            document.querySelector('#receiver').classList.add('close');
+        }
+
+        document.querySelector('.header-logo').style.background = this.header.backgroundColor;
+        document.querySelector('.chatbot-layout-header').style.background = this.openCloseColor;
+        // style.innerHTML = '';
+        // document.body.appendChild(style);
+    }
 }
 
 var updateInput = function (e) {
@@ -68,10 +82,57 @@ var submitFunc = function (e) {
     if (e.target.value === 'Submit') {
         document.querySelector('.generated-layout-props pre').textContent = JSON.stringify(chatbotLayoutGenerator, undefined, 2);
     }
+
+    if (typeof chatbotLayoutGenerator !== 'undefined') {
+        chatbotLayoutGenerator.initCss();
+    }
 }
 
-document.addEventListener('change', updateInput);
-document.addEventListener('click', submitFunc);
+function openChatbotLayout (receiverElem, imgElemOpen, imgElemClose) {
+    document.getElementById('receiver').classList.add("open");
+    document.getElementById('receiver').classList.remove("close");
+    document.getElementsByClassName('chatbot-layout')[0].classList.add("chatbot-layout-open");
+    document.getElementsByClassName('chatbot-layout')[0].classList.remove("chatbot-layout-closed");
+    document.getElementsByClassName('chatbot-layout-header-mobile')[0].classList.remove('close');
+    imgElemClose.style.opacity = 1;
+    imgElemOpen.style.opacity = 0;
+    localStorage.setItem('chatbotLayoutOpen', true);
+}
+
+function closeChatbotLayout (receiverElem, imgElemOpen, imgElemClose) {
+    document.getElementById('receiver').classList.add("close");
+    document.getElementById('receiver').classList.remove("open");
+    document.getElementsByClassName('chatbot-layout')[0].classList.add("chatbot-layout-closed");
+    document.getElementsByClassName('chatbot-layout')[0].classList.remove("chatbot-layout-open");
+    document.getElementsByClassName('chatbot-layout-header-mobile')[0].classList.add('close');
+    imgElemOpen.style.opacity = 1;
+    imgElemClose.style.opacity = 0;
+    localStorage.setItem('chatbotLayoutOpen', false);
+}
+
+function toggleChatbotLayout () {
+    /**
+     * Toggles opening and closing of the chatbotLayout
+     * @returns - no return
+     */
+    var chatbotLayoutHeaderImgElemOpen = document.getElementsByClassName('chatbot-layout-header-img open')[0];
+    var chatbotLayoutHeaderImgElemClose = document.getElementsByClassName('chatbot-layout-header-img close')[0];
+    var receiverElem = document.getElementById('receiver');
+    if (receiverElem.classList.contains('close')) {
+      openChatbotLayout(receiverElem, chatbotLayoutHeaderImgElemOpen, chatbotLayoutHeaderImgElemClose);
+    } else {
+      closeChatbotLayout(receiverElem, chatbotLayoutHeaderImgElemOpen, chatbotLayoutHeaderImgElemClose);
+    }
+}
+
+window.onload = function () {
+    document.addEventListener('change', updateInput);
+    document.addEventListener('click', submitFunc);
+    var chatbotLayoutHeaderElem = document.getElementsByClassName('chatbot-layout-header')[0];
+    chatbotLayoutHeaderElem.addEventListener('click', toggleChatbotLayout);
+    var chatbotLayoutHeaderElemMobile = document.getElementsByClassName('chatbot-layout-header-mobile')[0];
+    chatbotLayoutHeaderElemMobile.addEventListener('click', toggleChatbotLayout);
+}
 
 
 var chatbotLayoutGeneratorProps = {

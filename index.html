@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="./ChatbotLayoutGenerator.js"></script>
+    <script type="text/javascript" src="./ChatbotLayoutGenerator.js?v=3"></script>
     <link rel="stylesheet" href="./styles.css" />
 </head>
 <html>
@@ -52,9 +52,221 @@
             <pre></pre>
         </div>
     </div>
+
+    <div class="chatbot-layout chatbot-layout-open">
+       <div class="chatbot-layout-banner close">
+          <div class="chatbot-layout-banner-title">Chatbot</div>
+          <div class="chatbot-layout-banner-helper">Virtual Assistant</div>
+          <div class="chatbot-layout-banner-description">Hi there! I'm available to assist you with anything you need.</div>
+      </div>
+      <div class="header-logo">
+         <img class="logo" src="/logo.png" alt="logo" />
+      </div>
+      <div class="chatbot-layout-wrapper">
+        <div class="chatbot-layout-header-mobile">
+          <img class="logo" src="/logo.png" alt="logo" />
+          <img class="close" src="/close.png" alt="toggle chatbot" />
+        </div>
+        <iframe id="receiver" frameborder="0" width="100%" height="100%" allow="geolocation; microphone; camera">
+          <p>Your browser does not support iframes.</p>
+        </iframe>
+        <div class="chatbot-layout-header">
+          <img class="chatbot-layout-header-img close" src="/close.png" alt="toggle chatbot" />
+          <img class="chatbot-layout-header-img open" src="/icon.png" alt="toggle chatbot" />
+        </div>
+      </div>
+    </div>
+
     <script>
         var chatbotLayoutGenerator = new ChatbotLayoutGenerator(chatbotLayoutGeneratorProps);
-        console.log('chatbotLayoutGenerator', chatbotLayoutGenerator);
+        chatbotLayoutGenerator.initCss();
     </script>
+    <style>
+        .chatbot-layout {
+          position: fixed;
+          width: 376px;
+          height: 535px;
+          bottom: 20px;
+          right: 20px;
+          z-index: 90;
+        }
+          
+        .chatbot-layout-closed .header-logo {
+          display: none;
+        }
+          
+        .chatbot-layout-banner {
+          height: 100px;
+          background: rgb(247, 247, 247);
+          border-radius: 10px;
+          padding: 1rem;
+          box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
+        }
+          
+        .chatbot-layout-banner.close {
+           display: none;
+        }
+          
+        .chatbot-layout-banner-title {
+           padding-bottom: 0.2rem;
+           font-weight: 800;
+         }
+          
+        .chatbot-layout-banner-helper {
+           opacity: 0.50;
+           padding-bottom: 0.8rem;
+         }
+          
+        .header-logo {
+          height: 30px;
+          background: #31ba4b;
+          border-radius: 0.5rem 0.5rem 0 0;
+        }
+          
+        .header-logo img {
+          height: inherit; 
+        }
+         
+        .chatbot-layout-open {
+            height: 535px;
+        }
+         
+        .chatbot-layout-closed {
+            height: 71px;
+        }
+         
+        .chatbot-layout-wrapper {
+          width: 376px;
+          height: 448px;
+        }
+         
+        .chatbot-layout-header-mobile {
+            display: none;
+        }
+         
+        .chatbot-layout-header {
+          position: relative;
+          height: 56px;
+          width: 56px;
+          border: 1px solid black;
+          background: #000;
+          margin-left: auto;
+          border-radius: 50%;
+          box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
+        }
+         
+        #receiver {
+          transition: opacity 1s ease-in-out;
+          opacity: 1;
+          background: rgba(0, 0, 0, 0.5);
+          box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
+          border-radius: 0 0 0.5rem 0.5rem;
+        }
+         
+        #receiver.close {
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+         
+        #receiver.open {
+          height: 100%;
+          opacity: 1;
+          overflow: hidden;
+        }
+         
+        .chatbot-layout-header-img {
+          position: absolute;
+          max-width: 14px;
+          max-height: 14px;
+          transition: opacity 1s ease-in-out;
+          opacity: 1;
+          right: 0px;
+          left: 0px;
+          top: 0px;
+          bottom: 0px;
+          margin: auto;
+        }
+         
+        .chatbot-layout-header-img.open {
+          opacity: 0;
+        }
+           
+        .absolute-cart-box {
+          display: none;
+        }
+         
+        @media only screen and (max-width: 768px) {
+          .chatbot-layout {
+            width: 100%;
+            position: fixed;
+            height: 100%;
+          }
+          
+          .header-logo {
+            display: none;
+          }
+         
+          .chatbot-layout-header-mobile {
+            display: flex;
+            width: inherit;
+            height: 9%;
+            background: #31ba4b;
+          }
+         
+          .chatbot-layout-header-mobile img {
+            height: 30%;
+            padding: 1rem;
+            align-self: center;
+          }
+          
+          .chatbot-layout-header-mobile img:last-of-type {
+            margin-left: auto;
+          }
+          
+          .chatbot-layout-header-mobile img.logo {
+            height: 80%;
+            padding: 1rem;
+          }
+         
+          .chatbot-layout-header-mobile.close {
+            display: none;
+          }
+         
+          #receiver {
+            border-radius: 0;
+          }
+         
+          #receiver.close {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+          }
+         
+          #receiver.open {
+            height: 91%;
+            opacity: 1;
+            overflow: hidden;
+          }
+         
+          .chatbot-layout-open {
+            height: 100%;
+            bottom: 0px;
+            right: 0px;
+          }
+         
+          .chatbot-layout-closed {
+            height: 205px;;
+            bottom: 24px;
+            right: 24px;
+            width: 88%;
+          }
+         
+          .chatbot-layout-wrapper {
+            width: 100%;
+            height: 100%;
+          }
+        }
+    </style>
 </body>
 </html>
