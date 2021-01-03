@@ -11,7 +11,7 @@ class ChatbotLayoutGenerator {
             close: props.openCloseIcons.close
         };
         this.openCloseShape = props.openCloseShape;
-
+        this.frameSrc = props.frameSrc;
     }
 
     setHeaderImage (headerImage) {
@@ -42,6 +42,10 @@ class ChatbotLayoutGenerator {
         this.openCloseShape = openCloseShape;
     }
 
+    setFrameSrc (frameSrc) {
+        this.frameSrc = frameSrc
+    }
+
     initCss() {
         const style = document.createElement('style');
         const header = '.header-logo {' + this.header.backgroundColor + '}';
@@ -53,8 +57,15 @@ class ChatbotLayoutGenerator {
 
         document.querySelector('.header-logo').style.background = this.header.backgroundColor;
         document.querySelector('.chatbot-layout-header').style.background = this.openCloseColor;
-        // style.innerHTML = '';
-        // document.body.appendChild(style);
+        
+        let styleBorderRadius = '50%';
+        if (this.openCloseShape === 'square') {
+            styleBorderRadius = '0';
+        } else if (this.openCloseShape === 'square-round-edges') {
+            styleBorderRadius = '10%';
+        }
+        document.querySelector('.chatbot-layout-header').style.borderRadius = styleBorderRadius;
+        document.querySelector('#receiver').src = this.frameSrc;
     }
 }
 
@@ -75,6 +86,8 @@ var updateInput = function (e) {
         chatbotLayoutGenerator.setCloseIcon(value);
     } else if (e.target.dataset.type === 'open-close-icon-shape') {
         chatbotLayoutGenerator.setOpenCloseIconShape(value);
+    } else if (e.target.dataset.type === 'frame-src') {
+        chatbotLayoutGenerator.setFrameSrc(value);
     }
 }
 
@@ -111,10 +124,6 @@ function closeChatbotLayout (receiverElem, imgElemOpen, imgElemClose) {
 }
 
 function toggleChatbotLayout () {
-    /**
-     * Toggles opening and closing of the chatbotLayout
-     * @returns - no return
-     */
     var chatbotLayoutHeaderImgElemOpen = document.getElementsByClassName('chatbot-layout-header-img open')[0];
     var chatbotLayoutHeaderImgElemClose = document.getElementsByClassName('chatbot-layout-header-img close')[0];
     var receiverElem = document.getElementById('receiver');
